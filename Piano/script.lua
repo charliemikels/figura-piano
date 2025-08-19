@@ -85,32 +85,32 @@ end
 
 
 function getPianoIDs()
-    local pianoIDs = {}
-    for id, _ in pairs(pianos) do
-        table.insert(pianoIDs, id)
-    end
-    return pianoIDs
+  local pianoIDs = {}
+  for id, _ in pairs(pianos) do
+    table.insert(pianoIDs, id)
+  end
+  return pianoIDs
 end
 
 function getPianoPositions()
-    local PianoPositions = {}
-    for _, piano in pairs(pianos) do
-        table.insert(PianoPositions, piano.pos:copy())
-    end
-    return PianoPositions
+  local PianoPositions = {}
+  for _, piano in pairs(pianos) do
+    table.insert(PianoPositions, piano.pos:copy())
+  end
+  return PianoPositions
 end
 
 function getNearestPianoID(testPosition)
-    local nearestPianoID
-    local nearestPianoDistSquared
-    for id, piano in pairs(pianos) do
-        local newDistSquared = piano.pos:copy():sub(testPosition):lengthSquared()
-        if not nearestPianoID or newDistSquared < nearestPianoDistSquared then 
-            nearestPianoID = id
-            nearestPianoDistSquared = newDistSquared
-        end
+  local nearestPianoID
+  local nearestPianoDistSquared
+  for id, piano in pairs(pianos) do
+    local newDistSquared = piano.pos:copy():sub(testPosition):lengthSquared()
+    if not nearestPianoID or newDistSquared < nearestPianoDistSquared then 
+      nearestPianoID = id
+      nearestPianoDistSquared = newDistSquared
     end
-    return nearestPianoID, (nearestPianoID and pianos[nearestPianoID].pos:copy() or nil)
+  end
+  return nearestPianoID, (nearestPianoID and pianos[nearestPianoID].pos:copy() or nil)
 end
 
 -- stores important functions so that other avatars can access them through avatarVars() in the world API
