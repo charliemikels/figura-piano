@@ -103,10 +103,8 @@ end
 function getNearestPianoID(testPosition)
     local nearestPianoID
     local nearestPianoDistSquared
-    print("---")
     for id, piano in pairs(pianos) do
         local newDistSquared = piano.pos:copy():sub(testPosition):lengthSquared()
-        print("testing",id,testPosition, piano.pos:copy(), piano.pos:copy():sub(testPosition), newDistSquared)
         if not nearestPianoID or newDistSquared < nearestPianoDistSquared then 
             nearestPianoID = id
             nearestPianoDistSquared = newDistSquared
