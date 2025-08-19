@@ -38,7 +38,7 @@ piano_lib.playSound(keyID, notePos, noteVolume)
 ```
 `playSound()` allows you to play the sounds of the piano from any position without requiring a real piano. 
 
-Paramiters are the same as in `playNote()`, but without `pianoID` and `doesPlaySound`
+Parameters are the same as in `playNote()`, but without `pianoID` and `doesPlaySound`
 
 ### validPos()
 ```lua
@@ -60,13 +60,13 @@ local playingKeys = piano_lib.getPlayingKeys(pianoID)
 ```lua
 local pianoIDs = piano_lib.getPianoIDs()
 ```
-`getPianoIDs()` returns the IDs of all known pianos in a list. The list is indexed by integers starting at 1 so is sutable for `for _,_ in ipairs()` loops, but they are not in any particular order.
+`getPianoIDs()` returns the IDs of all known pianos in a list. The list is indexed by integers starting at 1, so it is suitable for `for _,_ in ipairs()` loops, but they are not in any particular order.
 
 ### getPianoPositions()
 ```lua
 local pianoPositions = piano_lib.getPianoPositions()
 ```
-`getPianoPositions()` returns the positions of all known pianos in a list. The list is indexed by integers starting at 1 so is sutable for `for _,_ in ipairs()` loops, but they are not in any particular order. 
+`getPianoPositions()` returns the positions of all known pianos in a list. The list is indexed by integers starting at 1, so it is suitable for `for _,_ in ipairs()` loops, but they are not in any particular order. 
 
 You will still need to convert a position back to an ID using `tostring()` if you want to use the piano at that position.
 
@@ -78,7 +78,7 @@ local nearestPianoID, nearestPianoPosition = piano_lib.getNearestPianoID(testPos
 - Returns a string and a vec3 representing the nearest piano's `pianoID` and position.
 - `testPosition` is a vec3
 
-This function allows for handy shorthands like 
+This function allows for useful shorthands like 
 
 ```lua
 local nearestPianoID = piano_lib.getNearestPianoID(player:getPos())
@@ -87,7 +87,7 @@ piano_lib.playNote(nearestPianoID, "C4", true)
 
 to quickly control the nearest piano, without checking all the pianos or all of the nearby blocks for a valid piano. 
 
-Note that this function simply loops through all the known pianos and compares their reletive distances. This can be an expensive opperation in worlds with lots of pianos. Furthermore, pianos only become "known" once they've been seen/rendered by the viewer. There may be cases where you are physicaly near a piano that isn't returned by `getNearestPianoID()`. EG: The piano is behind a wall.
+Note that this function simply loops through all the known pianos and compares their relative distances. This can be an expensive operation in worlds with lots of pianos. Furthermore, pianos only become "known" once they've been seen/rendered by the viewer. There may be cases where you are physically near a piano that isn't returned by `getNearestPianoID()`. EG: The piano is behind a wall.
 
 
 </details>
