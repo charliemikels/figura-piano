@@ -30,7 +30,7 @@ The `playNote()` function just plays a note on the piano when run. It contains t
 - `notePos` is a vec3 containing the world coordinates the note should play at. If left empty, it will just play at. You can simply ignore this and it will play at the player head coordinates. This is rarely useful, but if you want you can use the piano as a piano sample library (assuming you have it loaded), and play piano sounds anywhere in the world.
 - `noteVolume` is a number that sets the volume of the sound. If left empty, it defaults to 2. Note that volumes higher than 1 don't increase the loudness of the sound, but instead multiplies the audable radious of the sound. (1 = 16 blocks, 2 = 32 blocks, etc.)
 
-<details><summary>Click to see more functions included in the API.</summary>
+<details><summary>Click to see more functions included in the library.</summary>
 
 ### playSound()
 ```lua
