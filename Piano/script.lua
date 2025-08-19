@@ -83,11 +83,46 @@ function playSound(keyID,notePos,noteVolume)
   sounds:playSound(keyPitches[keyID][2],notePos,noteVolume,keyPitches[keyID][1])
 end
 
+
+function getPianoIDs()
+    local pianoIDs = {}
+    for id, _ in pairs(pianos) do
+        table.insert(pianoIDs, id)
+    end
+    return pianoIDs
+end
+
+function getPianoPositions()
+    local PianoPositions = {}
+    for _, piano in pairs(pianos) do
+        table.insert(PianoPositions, piano.pos:copy())
+    end
+    return PianoPositions
+end
+
+function getNearestPianoID(testPosition)
+    local nearestPianoID
+    local nearestPianoDistSquared
+    print("---")
+    for id, piano in pairs(pianos) do
+        local newDistSquared = piano.pos:copy():sub(testPosition):lengthSquared()
+        print("testing",id,testPosition, piano.pos:copy(), piano.pos:copy():sub(testPosition), newDistSquared)
+        if not nearestPianoID or newDistSquared < nearestPianoDistSquared then 
+            nearestPianoID = id
+            nearestPianoDistSquared = newDistSquared
+        end
+    end
+    return nearestPianoID, pianos[nearestPianoID].pos:copy()
+end
+
 -- stores important functions so that other avatars can access them through avatarVars() in the world API
 avatar:store("playNote",playNote)
 avatar:store("playSound",playSound)
 avatar:store("validPos", function(pianoID) return pianos[pianoID] ~= nil end)
 avatar:store("getPlayingKeys", function(pianoID) return pianos[pianoID] ~= nil and pianos[pianoID].playingKeys or nil end)
+avatar:store("getPianoIDs", getPianoIDs)
+avatar:store("getPianoPositions", getPianoPositions)
+avatar:store("getNearestPianoID", getNearestPianoID)
 
 -- the tick function >~>
 function events.world_tick()
