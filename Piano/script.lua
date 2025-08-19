@@ -112,7 +112,7 @@ function getNearestPianoID(testPosition)
             nearestPianoDistSquared = newDistSquared
         end
     end
-    return nearestPianoID, pianos[nearestPianoID].pos:copy()
+    return nearestPianoID, (nearestPianoID and pianos[nearestPianoID].pos:copy() or nil)
 end
 
 -- stores important functions so that other avatars can access them through avatarVars() in the world API
